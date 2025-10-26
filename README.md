@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Pico API Server
 
 A lightweight API server for managing Kubernetes Sandbox environments with transparent SSH/SFTP proxy support.
@@ -140,20 +139,10 @@ with SessionSSHClient(
 | `--tls-cert`     | `""`      | TLS certificate file                    |
 | `--tls-key`      | `""`      | TLS key file                            |
 | `--jwt-secret`   | `""`      | JWT secret (empty = skip auth)          |
-=======
-# kmetis-sdk
-
-# Project Overview
-
-This repository contains a Python SDK for managing Kubernetes sandboxes (Pods). The SDK provides functionality to create, manage, and interact with sandbox environments running in a Kubernetes cluster.
-
-# Code Architecture
->>>>>>> kmetis/main
 
 ## Project Structure
 
 ```
-<<<<<<< HEAD
 agent-box/
 ├── cmd/pico-apiserver/          # Entry point
 ├── pkg/pico-apiserver/          # Core implementation
@@ -225,7 +214,17 @@ Contributions welcome! This is a framework implementation that requires:
 - Production deployments should verify SSH host keys
 - Session cleanup requires background goroutine implementation
 
-=======
+# kmetis-sdk
+
+# Project Overview
+
+This repository contains a Python SDK for managing Kubernetes sandboxes (Pods). The SDK provides functionality to create, manage, and interact with sandbox environments running in a Kubernetes cluster.
+
+# Code Architecture
+
+## Project Structure
+
+```
 sandbox_sdk/  
 ├── models/                   # Data models
 │   ├── pod_templates.py      # Custom exception classes for handling various error conditions:
@@ -316,4 +315,3 @@ pytest
 7\. \*\*Port Management\*\*: SSH port information is stored in the cache along with IP addresses and retrieved dynamically rather than hardcoded. Defaults to port "22" for container SSH access.
 
 8\. \*\*Configuration\*\*: Environment variables can be loaded from a .env file for configuration including namespace, SSH username, port, and timeout settings.
->>>>>>> kmetis/main
