@@ -1,0 +1,57 @@
+version: "3.8"
+
+services:
+  browser-sandbox:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: browser-use:latest
+    container_name: browser-sandbox
+    hostname: browser-sandbox
+
+    # Resource limits
+    mem_limit: 2g
+    cpus: 2
+
+    # Ports
+    ports:
+      - "2222:22" # SSH port
+
+    # Volumes (optional)
+    volumes:
+      - ./scripts:/home/sandbox/scripts:ro
+      - ./output:/home/sandbox/output
+
+    # Environment variables
+    environment:
+      - PLAYWRIGHT_BROWSERS_PATH=/ms-playwright
+      - PYTHONUNBUFFERED=1
+      - DISPLAY=:99
+
+    # Keep container running
+    command: bash -c "sudo service ssh start && tail -f /dev/null"
+
+    # Restart policy
+    restart: unless-stopped
+
+    # Security options
+    security_opt:
+      - seccomp:unconfined
+
+    # Healthcheck
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "python3",
+          "-c",
+          "from playwright.sync_api import sync_playwright; print('OK')",
+        ]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+
+networks:
+  default:
+    name: browser-sandbox-network
